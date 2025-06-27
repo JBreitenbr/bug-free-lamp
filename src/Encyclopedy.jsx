@@ -6,6 +6,7 @@ let [letter, setLetter]=useState();
   let [bands, setBands]=useState([]);
   let [bandSubs,setBandSubs]=useState([]);
   let [bandName, setBandName]=useState("none");
+  let [trCount, setTrCount]=useState(8);
   let [tracks, setTracks]=useState([]);
 useEffect(() =>{
 fetch(`https://raw.githubusercontent.com/JBreitenbr/Spotify-Data/refs/heads/main/bandSubs.json`)
@@ -23,7 +24,7 @@ fetch(`https://raw.githubusercontent.com/JBreitenbr/Spotify-Data/refs/heads/main
 useEffect(() =>{
 fetch(`https://raw.githubusercontent.com/JBreitenbr/Spotify-Data/refs/heads/main/Songs/${bandName}.json`)
       .then((res) => res.json())
-      .then((data) => setTracks(data))
+      .then((data) => {setTracks(data); setTrCount(data.length);})
   },[bandName]);
 
 const bandTracks=
@@ -48,17 +49,19 @@ return (
         {bands.map(item=>
           <option key={item.name}>{item.name}</option>
         )}</select></div><br/>
-      {bandName=="none"?<div className="spoti mt-7 sm:mt-36"></div>:<ul className="grid grid-cols-2">{bandTracks}</ul>}    <div>
+      {bandName=="none"?<div className="spoti mt-7 sm:mt-36"></div>:/*<ul className="grid grid-cols-2">{bandTracks}</ul>*/null}    <div>
         {tracks.length > 0 ? (
           <>
             <Pagination
               data={tracks}
+              dataLength={trCount}
+              setDataLength={setTrCount}
               RenderComponent={Track}
               title="Posts"
               buttonConst={3}
               contentPerPage={5}
               siblingCount={1}
-            />
+            />{trCount}
           </>
         ) : (
           <h1>No Posts to display</h1>
