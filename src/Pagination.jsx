@@ -49,7 +49,7 @@ const Pagination = ({
     <div>
       <h1>{title}</h1>
       {/* show the post 10 post at a time*/}
-      <div className="dataContainer">
+      <div className="grid grid-cols-2">
         {getPaginatedData().map((dataItem, index) => (
           <RenderComponent key={index} data={dataItem} />
         ))}

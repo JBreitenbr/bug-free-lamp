@@ -59,7 +59,7 @@ return (
               RenderComponent={Track}
               title="Posts"
               buttonConst={3}
-              contentPerPage={5}
+              contentPerPage={10}
               siblingCount={1}
             />{trCount}
           </>
