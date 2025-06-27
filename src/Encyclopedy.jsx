@@ -1,4 +1,6 @@
 import {useEffect, useState} from 'react';
+import Pagination from "./Pagination";
+import Track from "./Track";
 const Encyclopedy = () => {
 let [letter, setLetter]=useState();
   let [bands, setBands]=useState([]);
@@ -30,7 +32,7 @@ tracks.map(
   /*let songs=item.album_tracks.split(")/"); let med=Math.floor(songs.length/2);
   let songs1=songs.slice(0,med+songs.length%2); let songs2=songs.slice(med+songs.length%2);*/
 return (
- <><li key={item.track}><div className="ml-4 mb-4"><img src={item.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}} /><div className="text-base sm:text-xl md:text-2xl xl:text-3xl mt-2 text-white">{item.track}</div></div></li></>)})
+ <><li key={item.track}><div className="ml-4 mb-4"><img src={item.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}} /><div className="text-base sm:text-xl md:text-2xl xl:text-3xl mt-2 text-white">{item.track}</div></div></li>    </>)});
   return (
     <div className="generale bg-slate-500" style={{position:"relative"}}>
      <div className="bg-slate-300 flex flex-col" style={{position: "sticky",top:"0px",width:"100vw"}}>
@@ -46,7 +48,22 @@ return (
         {bands.map(item=>
           <option key={item.name}>{item.name}</option>
         )}</select></div><br/>
-      {bandName=="none"?<div className="spoti mt-7 sm:mt-36"></div>:<ul className="grid grid-cols-2">{bandTracks}</ul>}
+      {bandName=="none"?<div className="spoti mt-7 sm:mt-36"></div>:<ul className="grid grid-cols-2">{bandTracks}</ul>}    <div>
+        {tracks.length > 0 ? (
+          <>
+            <Pagination
+              data={tracks}
+              RenderComponent={Track}
+              title="Posts"
+              buttonConst={3}
+              contentPerPage={5}
+              siblingCount={1}
+            />
+          </>
+        ) : (
+          <h1>No Posts to display</h1>
+        )}
+      </div>
     </div>
   )
 }
