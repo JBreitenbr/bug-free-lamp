@@ -3,15 +3,13 @@ import { usePaginationRange, DOTS } from "./hooks/usePaginationRange";
 
 const Pagination = ({
   data,
-  dataLength,
-  setDataLength,
   RenderComponent,
   title,
   buttonConst,
   contentPerPage,
   siblingCount,
 }) => {
-  const [totalPageCount] = useState(Math.ceil(dataLength / contentPerPage));
+  const [totalPageCount] = useState(Math.ceil(data.length / contentPerPage));
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginationRange = usePaginationRange({
