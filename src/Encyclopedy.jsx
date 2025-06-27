@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Pagination from "./Pagination";
 import Track from "./Track";
-const Encyclopedy = ({tracks}) => {
+const Encyclopedy = ({tracks,bandName}) => {
   
   return (<>{tracks.length>0?
             (<Pagination
