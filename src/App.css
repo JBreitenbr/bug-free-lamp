@@ -3,7 +3,12 @@
 * {
   box-sizing: border-box;
 }
-
+:root {
+  --tooltip-text-color: white;
+  --tooltip-background-color:#363636;
+  --tooltip-margin: 30px;
+  --tooltip-arrow-size: 6px;
+}
 body {
   background-color: #64748B;
   font-family:'Nunito',Arial,sans-serif;
@@ -147,11 +152,7 @@ small {
   box-shadow: none;
   color: #999;
 }
-.geom {
-  width: 200px;
-  height: 100px;
-  background-color: papayawhip;
-}
+
 .Tooltip-Wrapper {
   display: inline-block;
   position: relative;
@@ -200,13 +201,16 @@ small {
   left: calc(var(--tooltip-arrow-size)*-1);
   border-right-color:var(--tooltip-background-color);
 }
+
 .Tooltip-Tip.bottom {
   bottom: calc(var(--tooltip-margin)*-1);
+  left: 40%;
 }
 .Tooltip-Tip.bottom::before {
   bottom: 100%;
   border-bottom-color:var(--tooltip-background-color);
-}
+  left: 40%;
+} 
 
 .Tooltip-Tip.left {
   left:auto;
